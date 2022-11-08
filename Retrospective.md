@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Baley Wilson
+- email: baleywilson@u.boisestate.edu
 
 ## Instructions
 
