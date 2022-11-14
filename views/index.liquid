@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{title}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1 style = "text-align:center;">Baley's Blog</h1>
+        <ul>
+            {% for username in data%}
+            <div class="blogposts">
+            <ul>{{username.blog_username}} - {{username.blog_txt}}  </ul>
+            </div>
+            {% endfor%}
+        </ul>
+
+        <hr>
+        <h2 style = "text-align:center; ">Create Post</h2>
+        <form style="text-align:center;" action="/add" method="POST" >
+            <div>  
+                <label for="username">Enter username:</label>
+                <input name="username" id="username" value="enter your name here" />
+                <label for="content">Create blog post:</label>
+                <input name="content" id="content" value="enter blog post here" />
+            </div>
+            <div>
+                <button>Send my blog</button>
+            </div>
+    </body>
+</html>

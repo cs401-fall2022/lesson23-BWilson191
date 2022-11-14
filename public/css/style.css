@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.blogposts{ 
+  display: table;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border:1px solid black;
+  border-radius: 10px;
+}
