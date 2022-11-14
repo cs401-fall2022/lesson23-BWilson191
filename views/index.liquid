@@ -10,6 +10,8 @@
     </head>
     <body>  
         <h1 style = "text-align:center;">Baley's Blog</h1>
+        <p style = "text-align:center;">This is a simple blogging application where you can enter your name and a blog post. Eventually you will
+        be able to create a post, edit a post, delete a post, and view all older posts.</p>
         <h2 style = "text-align:center; ">Create Post</h2>
         <form style="text-align:center;" action="/add" method="POST" >
             <div>  
@@ -21,19 +23,17 @@
             <div>
                 <button>Create Post</button>
             </div>
-        <p style = "text-align:center;">This is a simple blogging application where you can enter your name and a blog post. Eventually you will
-        be able to create a post, edit a post, delete a post, and view all older posts.</p>
+        </form>
+ 
         <ul>
             {% for username in data%}
             <div class="blogposts">
-            <ul>{{username.blog_username}} - {{username.blog_txt}}  </ul>
+            <ul>{{username.blog_username}} <br /> {{username.blog_txt}}</ul>
             <button>EDIT POST</button>
             <button>DELETE POST</button>
             </div>
             <br />
             {% endfor%}
         </ul>
-
-        <hr>
     </body>
 </html>
