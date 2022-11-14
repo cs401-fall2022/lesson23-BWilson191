@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
             console.log("Table exists!");
             db.all(` select blog_username , blog_txt from posts`, (err, rows) => {
               //console.log("returning " + rows.length + " records");
-              res.render('index', { title: 'Express', data: rows });
+              res.render('index', { title: 'Baleys blog', data: rows });
             });
           } else {
             console.log("Table does not exist, inserting data");
