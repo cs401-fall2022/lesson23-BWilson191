@@ -18,7 +18,7 @@
                 <label for="username">Enter username:</label>
                 <input name="username" id="username" value="enter your name here" />
                 <label for="content">Create blog post:</label>
-                <input name="content" id="content" value="enter blog post here" />
+                <textarea rows="10" cols="100" name="content" id="content" value="enter blog post here" ></textArea>
             </div>
             <div>
                 <button>Create Post</button>
@@ -29,8 +29,13 @@
             {% for username in data%}
             <div class="blogposts">
             <ul>{{username.blog_username}} <br /> {{username.blog_txt}}</ul>
-            <button>EDIT POST</button>
-            <button>DELETE POST</button>
+            <form style="text-align:center;" action="/edit" method="POST" >
+                <button type="submit">EDIT POST</button>
+            </form>
+            <form style="text-align:center;" action="/delete" method="POST" >
+                <button type="submit">DELETE POST</button>
+                <input type="hidden" name="blogid" id="blogid" value={{username.blog_id}}></label>
+            </form>
             </div>
             <br />
             {% endfor%}
