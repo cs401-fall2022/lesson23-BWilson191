@@ -12,11 +12,13 @@
         <h1 style = "text-align:center;">Baley's Blog</h1>
         <p style = "text-align:center;">This is a simple blogging application where you can enter your name and a blog post. Eventually you will
         be able to create a post, edit a post, delete a post, and view all older posts.</p>
+        </br>
         <h2 style = "text-align:center; ">Create Post</h2>
         <form style="text-align:center;" action="/add" method="POST" >
             <div>  
                 <label for="username">Enter username:</label>
                 <input name="username" id="username" value="enter your name here" />
+                </br>
                 <label for="content">Create blog post:</label>
                 <textarea rows="10" cols="100" name="content" id="content" value="enter blog post here" ></textArea>
             </div>
@@ -29,12 +31,13 @@
             {% for username in data%}
             <div class="blogposts">
             <ul>{{username.blog_username}} <br /> {{username.blog_txt}}</ul>
-            <form style="text-align:center;" action="/edit" method="POST" >
+            <form style="text-align:center;" action="/editpost" method="GET" >
                 <button type="submit">EDIT POST</button>
+                <input type="hidden" name="blog_id" id="blog_id" value={{username.blog_id}}></label>
             </form>
             <form style="text-align:center;" action="/delete" method="POST" >
                 <button type="submit">DELETE POST</button>
-                <input type="hidden" name="blogid" id="blogid" value={{username.blog_id}}></label>
+                <input type="hidden" name="blog_id" id="blog_id" value={{username.blog_id}}></label>
             </form>
             </div>
             <br />

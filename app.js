@@ -15,6 +15,7 @@ app.use('/', indexRouter);
 // register liquid engine
 app.engine('liquid', engine.express()); 
 app.set('views', './views');            // specify the views directory
-app.set('view engine', 'liquid');       // set liquid to default
+app.set('view engine', 'liquid');  // set liquid to default
+
 
 module.exports = app;

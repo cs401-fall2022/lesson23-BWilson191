@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose()
+const path = require('path');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -38,6 +39,44 @@ router.get('/', function (req, res, next) {
     });
 });
 
+
+router.get('/editpost', (req, res, next) => {
+  console.log("edit working");
+
+    var db = new sqlite3.Database('mydb.sqlite3',
+      sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+      (err) => {
+        if (err){
+          console.log("Getting error " + err);
+          exit(1);
+        }
+        
+          console.log("editing post ID: " + req.query.blog_id);
+          db.all(` select blog_id, blog_txt from posts where blog_id = ${req.query.blog_id}`, (err, rows) => {
+            res.render('editpost', { title: 'Edit Post', data: rows },);  
+          });
+      }
+    )
+});
+
+router.post('/edit', (req, res, next) => {
+  console.log("editing post contents");
+  var db = new sqlite3.Database('mydb.sqlite3',
+  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+  (err) => {
+    if (err) {
+      console.log("Getting error " + err);
+      exit(1);
+    }
+    console.log("Updating post: " + req.body.blog_id  + " New Content: " + req.body.content);
+    db.exec(`update posts set blog_txt = '${req.body.content}' where blog_id=${req.body.blog_id}`)
+    //redirect to homepage
+    res.redirect('/');
+  }
+);
+})
+
+
 router.post('/add', (req, res, next) => {
   console.log("Adding blog to table without sanitizing input! YOLO BABY!!");
   var db = new sqlite3.Database('mydb.sqlite3',
@@ -69,10 +108,11 @@ router.post('/delete', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
-      db.exec(`delete from posts where blog_id='${req.body.blogid}';`);
+      db.exec(`delete from posts where blog_id='${req.body.blog_id}';`);
       res.redirect('/');
     }
   )
 
 })
+
 module.exports = router;

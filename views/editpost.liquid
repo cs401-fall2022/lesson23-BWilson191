@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{title}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h2 style = "text-align:center; ">Edit Post</h2> 
+            <ul>
+                <div>
+                    <ul>
+                        {% for posts in data%}
+                        <form style="text-align:center;" action="/edit" method="POST" >
+                            <div>  
+                                <label for="blog_id">Post ID</label>
+                                <input name="blog_id" id="blog_id" value={{posts.blog_id}} />
+                                <br />
+                                <label for="content">edit blog post:</label>
+                                <textarea rows="10" cols="100" name="content" id="content">{{posts.blog_txt}}</textArea>
+                            </div>
+                            <div>
+                                <button>Edit Post</button>
+                            </div>
+                        </form>
+                        {% endfor%}
+                    </ul>
+                </div>
+            </ul>
+    </body>
+</html>
