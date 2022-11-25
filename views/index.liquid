@@ -13,6 +13,7 @@
         <p style = "text-align:center;">This is a simple blogging application where you can enter your name and a blog post. Eventually you will
         be able to create a post, edit a post, delete a post, and view all older posts.</p>
         </br>
+        <div class="container">
         <h2 style = "text-align:center; ">Create Post</h2>
         <form style="text-align:center;" action="/add" method="POST" >
             <div>  
@@ -26,11 +27,19 @@
                 <button>Create Post</button>
             </div>
         </form>
+        </div>
+
  
         <ul>
             {% for username in data%}
             <div class="blogposts">
-            <ul>{{username.blog_username}} <br /> {{username.blog_txt}}</ul>
+            <ul>
+                {{username.blog_username}}
+                <br />
+                <div class="postblock">
+                    {{username.blog_txt}}
+                </div>
+            </ul>
             <form style="text-align:center;" action="/editpost" method="GET" >
                 <button type="submit">EDIT POST</button>
                 <input type="hidden" name="blog_id" id="blog_id" value={{username.blog_id}}></label>
