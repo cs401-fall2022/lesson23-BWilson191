@@ -11,6 +11,15 @@ html {
   background-color: #fffaee;
 }
 
+h2 {
+  font-size: 24px;
+}
+
+.photocontainer {
+  border:1px solid black;
+  border-radius: 10px;
+}
+
 .container {
   display: table;
   height: 100%;
@@ -23,12 +32,19 @@ html {
 }
 
 .postblock{
-  
+  border:1px solid black;
+
+}
+
+.usernameblock { 
+  font-size: 24px;
+  border-width: 1px;
+  width: relative;
 }
 
 
 .blogposts{ 
-  display: table;
+  display: flex;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -36,4 +52,5 @@ html {
   text-align: center;
   border:1px solid black;
   border-radius: 10px;
+  justify-content: center;
 }

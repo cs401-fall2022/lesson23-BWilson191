@@ -39,6 +39,20 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/photoblog', (req, res, next) => {
+  console.log("Navigating to photoposts");
+  var db = new sqlite3.Database('photos.sqlite3', 
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      console.log("Getting error " + err);
+      exit(1);
+    }
+
+    
+
+  )
+})
+
 
 router.get('/editpost', (req, res, next) => {
   console.log("edit working");
@@ -78,7 +92,6 @@ router.post('/edit', (req, res, next) => {
 
 
 router.post('/add', (req, res, next) => {
-  console.log("Adding blog to table without sanitizing input! YOLO BABY!!");
   var db = new sqlite3.Database('mydb.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
     (err) => {
@@ -97,6 +110,22 @@ router.post('/add', (req, res, next) => {
       res.redirect('/');
     }
   );
+})
+
+router.post('/addPhoto', (req, res, next) => {
+  var db = new sqlite3.Database('mydb.sqlite3',
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      console.log("Uploading image from: " + req.body.username + " Description: " + req.body.imagedescription + " Photo: " + req.body.image )
+
+      db.exec(`insert into photoposts (photo_username, photo_description, photo_image)
+               values ('${req.body.username}', '${req.body.imagedescription}, ${req.body.image}');`)
+    }
+  )
 })
 
 router.post('/delete', (req, res, next) => {
